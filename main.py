@@ -1,24 +1,7 @@
-# main.py
-from jobspy import scrape_jobs
 from dotenv import load_dotenv
 from redis_client import push_job_to_stream
-
-
-def run_scraper():
-    jobs = scrape_jobs(
-        site_name="linkedin", # other job sites are erroring out, will need debug those but linkedin works
-        search_term="Python Developer",
-        location="Remote",
-        results_wanted=256,
-        country_indeed='us',
-        hours_old=24
-    )
-    print(jobs.keys())
-    #jobs.to_csv("results.csv", index=False)
-    print(f"Scraped {len(jobs)} jobs")
-
-    return jobs
-
+from scrapers import base_scraper
+import sys
 
 def clean_job_row(row: dict) -> dict | None:
     '''
@@ -39,12 +22,14 @@ def clean_job_row(row: dict) -> dict | None:
         if value is not None:
             cleaned[str(key)] = value
 
+    sys.exit(1)
     return cleaned
 
 
 if __name__ == "__main__":
-    load_dotenv(".envdev")
-    jobs = run_scraper()
+    load_dotenv(".env")  # switch to .envdev for connection to railway redis
+    jobs = base_scraper.linkedin_scraper()
     for _, row in jobs.iterrows():
         job_data = clean_job_row(row)
+        print(job_data)
         push_job_to_stream(job_data)
