@@ -42,9 +42,12 @@ cd job-ecosystem-scraper
 ```
 
 2. **Install dependencies**
+Get [Docker](https://docs.docker.com/desktop/setup/install/mac-install/)
 
-```bash
+Will assume you have python 3.10+ and brew.
+```zsh
 pip install -r requirements.txt
+brew install redis
 ```
 
 3. **Create a `.env` file**
