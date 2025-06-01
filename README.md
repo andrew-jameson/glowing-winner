@@ -53,15 +53,16 @@ brew install redis
 3. **Create a `.env` file**
 
 ```env
-JOB_QUERY="software engineer"
-LOCATION="remote"
-RESULTS_PER_SITE=25
-OUTPUT_FORMAT="csv"
+REDIS_STREAM_NAME=jobs
+REDIS_HOST=localhost
+REDIS_PORT="6379"
+REDIS_PASSWORD="redis"
 ```
 
 4. **Run a scrape**
 
 ```bash
+docker run -d --name redis-local -p 6379:6379 redis --requirepass redis
 python main.py
 ```
 
