@@ -1,6 +1,6 @@
 # job-ecosystem-scraper 🕷️
 
-A modular job scraping engine designed to extract job listings from various platforms. Built for integration into a larger auto-application ecosystem. Uses [`jobspy`](https://github.com/jackdbd/jobspy) for multi-site scraping and `pandas` for data handling. Hosted and deployed via [Railway](https://railway.app/).
+A modular job scraping engine designed to extract job listings from various platforms. Built for integration into a larger auto-application ecosystem. Uses [`jobspy`](https://github.com/speedyapply/JobSpy) for multi-site scraping and `pandas` for data handling. Hosted and deployed via [Railway](https://railway.app/).
 
 ---
 
